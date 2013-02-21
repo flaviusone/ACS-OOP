@@ -1,0 +1,70 @@
+Programare Orientata pe Obiecte
+
+			L A B O R A T O R  3b 
+		           Clase derivate
+
+
+   1. Sa se defineasca o clasa "AMap1" ca subclasa a clasei java.util.Dictionary
+pentru un dictionar (tabel asociativ). Clasa contine doua variabile de tip
+"Vector" : un vector de chei si un vector de valori asociate .
+  Se va redefini si metoda "toString" mostenita de la "Object".
+Se va folosi metoda "elements" din clasa Vector pentru metodele "keys", "elements".
+Exemplu de program pentru verificare: crearea si afisarea unui dictionar "AMap1"
+cu numarul de aparitii al fiecarui cuvant dintr-un vector de cuvinte. 
+
+  public static void main (String arg[]) {
+    Dictionary dic = new AMap1();
+    String d[] = { "c","b","a","c","b","c"};
+    Integer unu = new Integer(1), cnt;
+    for (int i=0;i<d.length;i++)
+       if ( (cnt= (Integer)dic.get (d[i])) ==null)
+          dic.put (d[i],unu);
+       else {
+          int nr = cnt.intValue();
+          dic.put (d[i], new Integer (nr+1));
+       }
+    System.out.println (dic);
+  }
+
+
+   2. Sa se defineasca o clasa "Entry" care contine o cheie si o valoare, 
+ambele de tip "Object" si urmatoarele metodele publice:
+
+   Entry (Object key, Object value);	// constructor
+   Object getKey();		// are ca rezultat cheia
+   Object getValue();		// are ca rezultat valoarea
+   boolean equals(Object obj);	// compara numai cheile din cele doua perechi
+   String toString();		// sir cu cele doua obiecte din pereche
+
+
+   Sa se defineasca o clasa "AMap2" ca subclasa a clasei java.util.Dictionary
+pentru un dictionar (tabel asociativ). Clasa contine un singur vector (obiect
+din clasa "Vector") de obiecte Entry. 
+Pentru verificare se va folosi functia "main" de la problema anterioara.
+
+
+   3. Sa se inlocuiasca in problema anterioara clasa "Entry" cu clasa din JDK
+java.util.AbstractMap.SimpleEntry si sa se observe rezultatul functiei "main".
+Se va corecta prin definirea unei clase "SEntry" derivata din clasa JDK, cu
+metoda "equals" redefinita astfel ca sa se compare numai cheile.
+
+
+   4. Un dictionar cu valori multiple ("MultiMap") este un dictionar in care 
+fiecare cheie are asociata o lista (un vector) de valori si nu o singura 
+valoare ca la un dictionar. Sa se defineasca o clasa "MultiMap" derivata
+din "Hashtable", care sa poata fi folosita ca dictionar cu valori multiple.
+Valorile asociate unei chei se memoreaza intr-un obiect de tip "Vector".
+Exemplu de program pentru verificarea unor operatii din "MultiMap":
+
+  public static void main (String arg[]) {
+    MultiMap dic= new MultiMap();
+    int n=10;   		// nr. de perechi cheie-valoare adaugate
+    for (int i=1;i<n;i++)
+      dic.put (i%5+1+"", (i+2)%8+1+"");
+    System.out.println (dic);
+     // afisare prin enumerare
+    Enumeration ek = dic.keys(); 
+    Enumeration ev = dic.elements(); 
+    while (ek.hasMoreElements())
+    	System.out.println(ek.nextElement()+":"+ ev.nextElement()) ; 	
+  }

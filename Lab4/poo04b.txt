@@ -1,0 +1,88 @@
+Programare Orientata pe Obiecte
+
+			L A B O R A T O R  4b
+		             Interfete
+
+
+   1. Sa se defineasca o clasa SortedVector pentru vectori ordonati, derivata din clasa
+Vector si cu doi constructori:
+        SortedVector();    // ordonat "natural"       
+        SortedVector(Comparator c);    // ordonat dupa criteriul dictat de comparatorul c
+
+   Se vor redefini metodele de adaugare la vector si metoda de cautare indexOf(Object o);
+   Se or defini clase comparator (care implementeaza interfata Comparator) pentru ordonare
+   "naturala" crescatoare si descrescatoare (DescComp).
+   Se va testa intr-un program care creeaza un vector ordonat crescator si apoi un vector
+   ordonat descrescator, cu aceleasi date:
+
+         String[] a= {"unu","doi","trei","patru","cinci","sase"};
+         SortedVector v1 = new SortedVector();
+         SortedVector v2 = new SortedVector(new DescComp());
+         for (String s: a) { v1.add(s); v2.add(s);}
+         System.out.println (v1);System.out.println (v2);
+
+
+   2. Sa se defineasca o interfata "Filter" cu o singura metoda:
+       boolean accept (Object obj)
+
+   Sa se defineasca o clasa "StringFilter" care implementeaza interfata "Filter" 
+   si accepta numai obiectele sir care contin un subsir dat. Constructor:
+       StringFilter (String str);
+
+   Sa se defineasca o subclasa a clasei "Hashtable" care are in plus metoda:
+         String toString (Filter f)
+ care produce un sir cu cheile si valorile selectate de filtrul f din acest
+ dictionar (pentru care se apeleaza metoda).
+
+   Sa se verifice cu urmatoarea secventa:
+
+	String keys[]= {"toString","substring","String","construct","Stream"};
+        Integer values[]={1,2,3,4,5,6};
+	MyHash h = new MyHash();
+        for (int i=0;i<keys.length;i++)
+  	    h.put (keys[i],values[i]);
+	System.out.println (h.toString (new StringFilter("str"));
+
+
+
+   3. Sa se defineasca o clasa "SortedHash" derivata din "Hashtable" cu o
+noua metoda :  String toString(Comparator c) 
+care produce un sir cu cheile si valorile din dictionar ordonate folosind 
+un comparator primit.
+  Se poate folosi metoda "Collections.sort" pentru ordonarea unui vector:
+        Collections.sort (Vector v, Comparator c);
+  Se va defini o clasa KComp pentru un comparator de chei 
+  care implementeaza interfata "Comparator":
+  Program de test:
+
+      String keys[]={"unu","doi","trei","patru","cinci","sase"};
+      Integer values[]={1,2,3,4,5,6};
+      SortedHash h = new SortedHash();
+      for (int i=0;i<keys.length;i++)
+  	    h.put (keys[i],values[i]);
+      System.out.println (h.toString(new KComp());   // ordonat dupa chei
+
+
+   4. Sa se defineasca o clasa "Table", care contine un tabel (matrice) ca vector
+de vectori (obiecte din clasa "Vector").
+Constructor:
+  Table (Vector table)
+Metode publice
+  void sort (int c);	// ordonare tabel dupa valorile din coloana c
+  String toString();	// afisare ca tabel (pe mai multe linii)
+  Se va defini si folosi o clasa care implementeaza interfata "Comparator".
+
+  Se poate folosi metoda de ordonare:
+   Collections.sort (Vector v, Comparator c);
+  Secventa pentru verificarea clasei:
+
+       String a[][] = {{"3","1","6"},{"1","5","2"},{"7","3","4"}};
+       Vector t = new Vector();
+       for (int i=0;i<a.length;i++)
+       	 t.add(new Vector (Arrays.asList(a[i])));
+       Table t= new Table(t);
+       for (int c=0;c<3;c++) {
+         t.sort(c);	 
+         System.out.println (t);
+       }  
+
